@@ -31,3 +31,11 @@ struct Book: Decodable, Identifiable {
         case coverUrlString = "cover_url"
     }
 }
+
+extension Book {
+    func copyAsFavorite(_ favorite: Bool) -> Book {
+        var copy = self
+        copy.setFavorite(favorite)
+        return copy
+    }
+}

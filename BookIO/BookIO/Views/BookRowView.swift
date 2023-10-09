@@ -20,11 +20,13 @@ struct BookRowView: View {
             VStack(alignment: .leading) {
 
                 Text(book.title)
-                    .font(.headline)
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0))
+                    .font(.title3)
+                    .fontWeight(.bold)
+//                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0))
 
                 Text(book.author)
-                    .font(.callout)
+                    .font(.subheadline)
+                    .foregroundStyle(.gray)
             }
 
             Spacer()
@@ -40,8 +42,9 @@ struct BookRowView: View {
 struct FavoriteCalloutView: View {
     var body: some View {
         Text("FAVORITE")
-            .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
+            .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
             .font(.caption2)
+            .fontWeight(.bold)
             .foregroundStyle(.white)
             .background(.yellow)
             .clipShape(Capsule())

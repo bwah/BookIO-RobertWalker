@@ -76,33 +76,3 @@ extension BookService {
         let book: String
     }
 }
-
-extension Array where Element == Book {
-    func setFavoriteBookWithId(_ id: String?) -> [Book] {
-        return self.map { book in
-            return book.copyAsFavorite(book.id == id ?? "")
-        }
-    }
-
-    func sortByFavoriteAndAlpha() -> [Book] {
-        return self.sorted { a, b in
-            if a.favorite {
-                return true
-            }
-
-            if b.favorite {
-                return false
-            }
-
-            return a.title < b.title
-        }
-    }
-}
-
-extension Book {
-    func copyAsFavorite(_ favorite: Bool) -> Book {
-        var copy = self
-        copy.setFavorite(favorite)
-        return copy
-    }
-}

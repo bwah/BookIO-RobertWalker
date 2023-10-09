@@ -27,7 +27,7 @@ struct BookDetailView: View {
                     ProgressView()
                 }
                 .frame(width: 250, height: 250)
-                .padding()
+                .padding(EdgeInsets(top: 0, leading: 30, bottom: 30, trailing: 30))
             }
 
             BookRowView(book: book)
@@ -39,12 +39,13 @@ struct BookDetailView: View {
 
             Spacer()
 
-            Button("Make Favorite") {
-                book.setFavorite(true)
-                favoriteAction(book)
+            if book.favorite == false {
+                BorderedButton(title: "Make Favorite") {
+                    book.setFavorite(true)
+                    favoriteAction(book)
+                }
             }
-            .disabled(book.favorite)
         }
-        .padding()
+        .padding(EdgeInsets(top: 0, leading: 30, bottom: 50, trailing: 30))
     }
 }

@@ -32,7 +32,7 @@ struct RootView: View {
                         }
                     }
             } else {
-                ProgressView()
+                LoginView(authService: authService)
             }
         }
         .confirmationDialog("Profile Options", isPresented: $showingProfileOptions) {
@@ -40,9 +40,9 @@ struct RootView: View {
                 authService.logout()
             }
         }
-        .fullScreenCover(isPresented: $authService.needsLogin) {
-            LoginView(authService: authService)
-        }
+//        .fullScreenCover(isPresented: $authService.needsLogin) {
+//            LoginView(authService: authService)
+//        }
     }
 }
 

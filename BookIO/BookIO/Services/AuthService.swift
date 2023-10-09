@@ -16,17 +16,13 @@ class AuthService: Service {
     var username: String? {
         return credentials?.username
     }
-    var authed: Bool {
-        return credentials != nil
-    }
-    
-    @Published var needsLogin: Bool = true
-    @Published var loggingIn: Bool = false
+    @Published var authed: Bool = false
 
     override init(jsonHttp: JsonHttp = JsonHttp()) {
         super.init(jsonHttp: jsonHttp)
 
         if let creds = try? Credentials.retrieveFromKeychain() {
+            loading = true
             Task {
                 await loginWith(creds)
             }
@@ -46,16 +42,30 @@ class AuthService: Service {
         }
     }
 
+    func createAccount(creds: Credentials) async -> AuthResult {
+        await setLoading(true)
+
+        do {
+            let url = try buildApiUrlFromPath("/users/new")
+            _ = try await jsonHttp.post(url: url, body: creds)
+            await setStateAsAuthenticated(creds: creds)
+            return .success
+        } catch {
+            await setLoading(false)
+            return .failure
+        }
+    }
+
     @MainActor func setStateAsAuthenticated(creds: Credentials) {
         credentials = creds
-        needsLogin = false
+        authed = true
         setLoading(false)
         try? credentials?.saveToKeychain()
     }
 
     @MainActor func setStateAsUnAuthenticated() {
         credentials = nil
-        needsLogin = true
+        authed = false
         setLoading(false)
         Credentials.removeFromKeychain()
     }
@@ -65,16 +75,4 @@ class AuthService: Service {
             await setStateAsUnAuthenticated()
         }
     }
-
-//    func authAfterDelay() {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//            self.credentials = Credentials(username: "asdf", password: "pass")
-//            self.needsLogin = false
-//        }
-//    }
-//
-//    func updateCredentials(_ creds: Credentials) {
-//        credentials = creds
-//        self.needsLogin = false
-//    }
 }

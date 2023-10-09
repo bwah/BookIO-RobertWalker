@@ -9,7 +9,8 @@ import SwiftUI
 
 struct LoginView: View {
     @ObservedObject var authService: AuthService
-    @State var showLoginFailure = false
+    @State var showErrorMessage = false
+    @State var showingNewAccountSheet = false
     @State var username = ""
     @State var password = ""
 
@@ -19,45 +20,67 @@ struct LoginView: View {
 
     var body: some View {
         VStack {
-            Text("Login")
-                .padding()
-
-            TextField("Username", text: $username)
-                .textInputAutocapitalization(.never)
-                .padding()
-            SecureField("Password", text: $password)
-                .padding()
-
-            Button {
-                attemptLoginWith(username: username, password: password)
-            } label: {
-                Text("Login")
-            }
-            .disabled(authService.loading)
-            .padding()
-
             if authService.loading {
                 ProgressView()
                     .padding()
-            }
 
-            if showLoginFailure {
-                Text("Unable to login, please try again")
-                    .padding()
+                Text("Logging in...")
+            } else {
+                loginFieldsView
+                Spacer()
             }
         }
-        .interactiveDismissDisabled()
+        .padding()
+    }
+
+    private var loginFieldsView: some View {
+        VStack {
+            Text("Login with your Username and Password")
+                .font(.title3)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+                .padding(EdgeInsets(top: 100, leading: 20, bottom: 20, trailing: 20))
+
+            BorderedTextField(text: $username, placeholder: "Username")
+                .disabled(authService.loading)
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 6, trailing: 0))
+
+            BorderedTextField(text: $password, placeholder: "Password", secure: true)
+                .disabled(authService.loading)
+
+            BorderedButton(title: "Login to Your Account") {
+                attemptLoginWith(username: username, password: password)
+            }
+            .disabled(authService.loading)
+            .frame(maxWidth: .infinity)
+            .padding()
+
+            Button("Create New Account") {
+                showingNewAccountSheet = true
+            }
+
+            if showErrorMessage {
+                ErrorText(text: "Unable to login, please try again")
+            }
+        }
+        .sheet(isPresented: $showingNewAccountSheet) {
+            NewAccountView(authService: authService)
+        }
     }
 
     private func attemptLoginWith(username: String, password: String) {
+        guard username.isEmpty == false && password.isEmpty == false else {
+            return
+        }
+
         Task {
-            setLoginFailure(visible: false)
+            setErrorMessage(visible: false)
             let authResult = await authService.loginWith(Credentials(username: username, password: password))
-            setLoginFailure(visible: authResult == .failure)
+            setErrorMessage(visible: authResult == .failure)
         }
     }
 
-    @MainActor private func setLoginFailure(visible: Bool) {
-        showLoginFailure = visible
+    @MainActor private func setErrorMessage(visible: Bool) {
+        showErrorMessage = visible
     }
 }

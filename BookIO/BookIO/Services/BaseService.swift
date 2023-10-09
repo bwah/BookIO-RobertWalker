@@ -12,7 +12,7 @@ enum ServiceError: Error {
 }
 
 class Service: ObservableObject {
-    @Published @MainActor var loading: Bool = false
+    @Published var loading: Bool = false
 
     static let baseUrlString = BookIOApp.appConfig.apiBaseUrl
     let jsonHttp: JsonHttp
