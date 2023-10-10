@@ -1,0 +1,91 @@
+{
+  "books": [
+    {
+      "id": "67e55044-10b1-426f-9247-bb680e5fe0c8",
+      "title": "Dr. Jekyll & Mr. Hyde",
+      "author": "Robert Louis Stevenson",
+      "description":  "First published in 1886 by Robert Louis Stevenson, the book is a famous piece of English Literature and is considered to be a defining book of the gothic horror genre. The novella has had a lasting impact on culture, making the phrase \"Jekyll and Hyde\" used to describe people who are outwardly good, but hide dark secrets of their true nature.",
+      "cover_url": "https://cdn.book.io/app/parlamint/67e55044-10b1-426f-9247-bb680e5fe0c8/cover.jpg"
+    },
+    {
+      "id": "48510d68-73f8-4d18-91c9-9aa4ac4655df",
+      "title": "The Wizard Tim",
+      "author": "Tim Canada & Joseph Eleam",
+      "description": "Tim the lazy, overweight wizard has his dream job. As the town wizard for a halfling town named Halfass, he never has to do anything except eat, nap and do absolutely nothing. However, he soon finds out that even the best posts don't last forever...",
+      "cover_url": "https://cdn.book.io/app/parlamint/48510d68-73f8-4d18-91c9-9aa4ac4655df/cover.jpg"
+    },
+    {
+      "id": "cf766168-9627-457d-b044-a0941bc89bb6",
+      "title": "Hot Shot's Mistake",
+      "author": "Gina Azzi",
+      "description": "Hot Shot's Mistake is set around Knoxville, TN and establishes the foundation of a heartwarming series filled with hockey, love, friendship, humor, and the significance of finding your place among a chosen family.",
+      "cover_url": "https://cdn.book.io/app/parlamint/cf766168-9627-457d-b044-a0941bc89bb6/cover.jpg"
+    },
+    {
+      "id": "29c5712f-674e-4b21-a2d5-e34c249fa245",
+      "title": "Twenty Thousand Leagues Under the Sea",
+      "author": "by Jules Verne -- NFT eBook",
+      "description": "Initially serialized in March 1869, the book is regarded as one of the premier adventure novels and one of Jules Verne’s most significant works. Jules’s story narrates the fantastic tale of Captain Nemo and his submarine Nautilus.",
+      "cover_url": "https://cdn.book.io/app/parlamint/29c5712f-674e-4b21-a2d5-e34c249fa245/cover.jpg"
+    },
+    {
+      "id": "94c808fb-8726-4751-966e-74cd5b8cacdc",
+      "title": "The Iliad",
+      "author": "Homer",
+      "description": "The poem, set near the end of the Trojan War, depicts an intense quarrel between King Agamemnon and the legendary warrior Achilles. The poem is often widely known as the first substantial piece of European literature.",
+      "cover_url": "https://cdn.book.io/app/parlamint/94c808fb-8726-4751-966e-74cd5b8cacdc/cover.jpg"
+    },{
+      "id": "acfc5a56-f606-4fca-b288-410eb9348eb9",
+      "title": "Treasure Island",
+      "author": "Robert Louis Stevenson",
+      "description": "First published in 1883, Treasure Island is one of the most famous pirate stories ever written. The story is told by Jim Hawkins, a young boy who discovers the whereabouts of a buried treasure, and then sets off to find the treasure with Dr. Livesey and Squire Trelawney. They hire hands to work the ship, the Hispaniola. Among the crew is Long John Silver, who is out to get the treasure for himself and the crew.",
+      "cover_url": "https://cdn.book.io/app/parlamint/acfc5a56-f606-4fca-b288-410eb9348eb9/cover.jpg"
+    },
+    {
+      "id": "e0b4df23-51b9-45f7-b8ac-ba0651f60c50",
+      "title": "Don Quixote",
+      "author": "Miguel de Cervantes",
+      "description": "Don Quixote was first published on January 16, 1605, by Miguel de Cervantes. The book is considered by many to be the first modern novel. The plot revolves around the adventures of Alonso Quijano, who reads so many chivalric romances that he loses his mind, and believes he has become a knight named Don Quixote de La Mancha.",
+      "cover_url": "https://cdn.book.io/app/parlamint/e0b4df23-51b9-45f7-b8ac-ba0651f60c50/cover.jpg"
+    },
+    {
+      "id": "87c4ce1d-e974-4788-ba07-1f454e996767",
+      "title": "Oliver Twist",
+      "author": "Charles Dickens",
+      "description": "A classical story that has been adapted for stage and screen for generations. Inspired partially by Dicken’s own youth and the plight of many unfortunate children, the story follows Oliver Twist as he escapes from a “Child Farm” (orphanage) and makes his way to London. Oliver does whatever it takes to survive in this un-romanticized peak into impoverished 1830s London.",
+      "cover_url": "https://cdn.book.io/app/parlamint/87c4ce1d-e974-4788-ba07-1f454e996767/cover.jpg"
+    },
+    {
+      "id": "299e17c7-837e-4a58-9f08-8da44c48aec7",
+      "title": "The Count of Monte Cristo",
+      "author": "Alexandre Dumas",
+      "description": "The story follows the life of Edmond Dantes, a young sailor who is falsely accused of treason and imprisoned in the island fortress of Château d'If. After 13 years of incarceration, Dantes escapes with the help of a fellow prisoner and begins to plot his revenge against those who wronged him.",
+      "cover_url": "https://cdn.book.io/app/parlamint/299e17c7-837e-4a58-9f08-8da44c48aec7/cover.jpg"
+    },
+    {
+      "id": "f0048cc6-571b-4ca7-8fe5-9d851391c3f2",
+      "title": "The Time Machine",
+      "author": "H.G. Wells",
+      "description": "First published in 1895, is considered a classic of science fiction literature. It tells the story of a scientist named Time Traveler, who builds a time machine and uses it to travel to the distant future. The Traveler encounters new species and uncovers a plot that forces him to try to get back to his own time.",
+      "cover_url": "https://cdn.book.io/app/parlamint/f0048cc6-571b-4ca7-8fe5-9d851391c3f2/cover.jpg"
+    },{
+      "id": "808011e8-8cf1-468a-a441-570a7cb2dc38",
+      "title": "Dog Breaking (Hosky Edition)",
+      "author": "W. N. Hutchinson",
+      "description": "For the Cardano enthusiast that needs to master the disobedient dog in their Twitter feed. 40 original covers to the 1865 classic, Dog Breaking by W. N. Hutchinson. Only a true idiot would buy this.",
+      "cover_url": "https://cdn.book.io/app/parlamint/808011e8-8cf1-468a-a441-570a7cb2dc38/cover.jpg"
+    },{
+      "id": "c7e6329c-bed9-4712-8358-755a2549254b",
+      "title": "Hamlet",
+      "author": "William Shakespeare",
+      "description": "One of the most well-known and enduring plays of all time. The play tells the story of Prince Hamlet of Denmark, who is seeking revenge for the murder of his father, the king. Along the way, he must confront his own doubts and fears, and ultimately make a decision about what he believes is right. The play is known for its complex characters, dramatic plot, and themes of betrayal, madness, and the consequences of inaction.",
+      "cover_url": "https://cdn.book.io/app/parlamint/c7e6329c-bed9-4712-8358-755a2549254b/cover.jpg"
+    },{
+      "id": "c7512a18-a13a-4127-81a7-26a27671bceb",
+      "title": "The Adventures of Sherlock Holmes",
+      "author": "Arthur Conan Doyle",
+      "description": "A collection of short stories by Arthur Conan Doyle, first published in 1892. The stories feature the detective Sherlock Holmes and his colleague Dr. John Watson, who investigates a variety of mysterious and unusual cases. Some of the most famous stories in the collection include “A Scandal in Bohemia,” “The Adventure of the Speckled Band,” and “The Adventure of Silver Blaze.”",
+      "cover_url": "https://cdn.book.io/app/parlamint/c7512a18-a13a-4127-81a7-26a27671bceb/cover.jpg"
+    }
+  ]
+}
