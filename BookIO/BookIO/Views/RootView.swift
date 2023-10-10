@@ -16,6 +16,8 @@ struct RootView: View {
         let authService = AuthService()
         self.authService = authService
         self.booksListViewModel = BooksMainViewModel(authService: authService)
+
+        self.authService.attemptLoginFromKeychain()
     }
 
     var body: some View {
@@ -35,14 +37,11 @@ struct RootView: View {
                 LoginView(authService: authService)
             }
         }
-        .confirmationDialog("Profile Options", isPresented: $showingProfileOptions) {
-            Button("Logout") {
+        .confirmationDialog("Logged in as \(authService.username ?? "")", isPresented: $showingProfileOptions) {
+            Button("Logout of account: \(authService.username ?? "")") {
                 authService.logout()
             }
         }
-//        .fullScreenCover(isPresented: $authService.needsLogin) {
-//            LoginView(authService: authService)
-//        }
     }
 }
 

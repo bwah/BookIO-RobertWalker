@@ -12,16 +12,21 @@ enum AuthResult {
 }
 
 class AuthService: Service {
+    let keychainHelper: KeychainCredentialsHelper
     var credentials: Credentials? = nil
     var username: String? {
         return credentials?.username
     }
     @Published var authed: Bool = false
 
-    override init(jsonHttp: JsonHttp = JsonHttp()) {
-        super.init(jsonHttp: jsonHttp)
+    init(jsonHttp: JsonHttp = JsonHttp(), keychainHelper: KeychainCredentialsHelper = KeychainCredentialsHelper()) {
+        self.keychainHelper = keychainHelper
 
-        if let creds = try? Credentials.retrieveFromKeychain() {
+        super.init(jsonHttp: jsonHttp)
+    }
+
+    func attemptLoginFromKeychain() {
+        if let creds = keychainHelper.retrieveFromKeychain() {
             loading = true
             Task {
                 await loginWith(creds)
@@ -42,7 +47,7 @@ class AuthService: Service {
         }
     }
 
-    func createAccount(creds: Credentials) async -> AuthResult {
+    func createAccountWith(_ creds: Credentials) async -> AuthResult {
         await setLoading(true)
 
         do {
@@ -56,18 +61,18 @@ class AuthService: Service {
         }
     }
 
-    @MainActor func setStateAsAuthenticated(creds: Credentials) {
+    @MainActor private func setStateAsAuthenticated(creds: Credentials) {
         credentials = creds
         authed = true
         setLoading(false)
-        try? credentials?.saveToKeychain()
+        keychainHelper.saveCredentials(creds)
     }
 
-    @MainActor func setStateAsUnAuthenticated() {
+    @MainActor private func setStateAsUnAuthenticated() {
         credentials = nil
         authed = false
         setLoading(false)
-        Credentials.removeFromKeychain()
+        keychainHelper.removeCredentials()
     }
 
     func logout() {

@@ -22,7 +22,6 @@ struct BookRowView: View {
                 Text(book.title)
                     .font(.title3)
                     .fontWeight(.bold)
-//                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0))
 
                 Text(book.author)
                     .font(.subheadline)
@@ -39,14 +38,8 @@ struct BookRowView: View {
     }
 }
 
-struct FavoriteCalloutView: View {
-    var body: some View {
-        Text("FAVORITE")
-            .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-            .font(.caption2)
-            .fontWeight(.bold)
-            .foregroundStyle(.white)
-            .background(.yellow)
-            .clipShape(Capsule())
-    }
+#Preview {
+    VStack {
+        BookRowView(book: previewBooks()[0])
+    }.padding()
 }

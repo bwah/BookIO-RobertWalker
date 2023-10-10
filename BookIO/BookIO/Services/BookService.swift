@@ -45,10 +45,19 @@ class BookService: Service {
         }
     }
 
+    static func mockBooksData() -> BooksDataResponse {
+        return BooksDataResponse(data: BooksList(books: previewBooks()))
+    }
+
+    static func mockFavoritesData() -> FavoritesDataResponse {
+        return FavoritesDataResponse(data:
+                                        FavoritesResponse(favorites:
+                                                            FavoriteBook(book: "3")))
+    }
 }
 
 extension BookService {
-    private struct BooksDataResponse: Decodable {
+    struct BooksDataResponse: Decodable {
         let data: BooksList
 
         var books: [Book] {
@@ -56,11 +65,11 @@ extension BookService {
         }
     }
 
-    private struct BooksList: Decodable {
+    struct BooksList: Decodable {
         let books: [Book]
     }
 
-    private struct FavoritesDataResponse: Decodable {
+    struct FavoritesDataResponse: Decodable {
         let data: FavoritesResponse
 
         var book: String {
@@ -68,11 +77,11 @@ extension BookService {
         }
     }
 
-    private struct FavoritesResponse: Decodable {
+    struct FavoritesResponse: Decodable {
         let favorites: FavoriteBook
     }
 
-    private struct FavoriteBook: Decodable {
+    struct FavoriteBook: Decodable {
         let book: String
     }
 }

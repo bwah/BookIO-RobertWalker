@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "3F22E5CF-AD5A-484C-9DFE-9FC09299B539",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:BookIO.xcodeproj",
+      "identifier" : "B652AAFC2AD0B8B700E0980B",
+      "name" : "BookIO"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:BookIO.xcodeproj",
+        "identifier" : "B652AB0C2AD0B8B900E0980B",
+        "name" : "BookIOTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NewAccountView: View {
+    @Environment(\.dismiss) var dismiss
     @ObservedObject private var authService: AuthService
     @State private var username: String = ""
     @State private var password: String = ""
@@ -21,11 +22,14 @@ struct NewAccountView: View {
 
     var body: some View {
         VStack {
+            
+            AppTitleView()
+
             Text("Enter a username and password to create an account")
                 .font(.title3)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
-                .padding(EdgeInsets(top: 100, leading: 20, bottom: 20, trailing: 20))
+                .padding()
 
             BorderedTextField(text: $username, placeholder: "Username")
                 .disabled(authService.loading)
@@ -37,11 +41,20 @@ struct NewAccountView: View {
 
             BorderedTextField(text: $passwordConfirm, placeholder: "Confirm Password", secure: true)
 
-            BorderedButton(title: "Create Account") {
+            BorderedButton(title: "Create Account", color: createEnabled() ? .black : .gray) {
                 createAccount()
             }
-            .disabled(authService.loading)
+            .disabled(!createEnabled())
             .padding()
+
+            Button {
+                dismiss()
+            } label: {
+                Text("Cancel")
+                    .underline()
+                    .padding()
+            }
+
 
             if showErrorMessage {
                 ErrorText(text: "Account creation failed, please try again...")
@@ -52,7 +65,15 @@ struct NewAccountView: View {
             }
 
             Spacer()
+
         }.padding()
+    }
+
+    private func createEnabled() -> Bool {
+        return !username.isEmpty
+        && !password.isEmpty
+        && (password == passwordConfirm)
+        && !authService.loading
     }
 
     private func createAccount() {
@@ -70,7 +91,7 @@ struct NewAccountView: View {
 
         Task {
             setErrorMessage(visible: false)
-            let authResult = await authService.createAccount(creds: Credentials(username: username, password: password))
+            let authResult = await authService.createAccountWith(Credentials(username: username, password: password))
             setErrorMessage(visible: authResult == .failure)
         }
     }
@@ -78,4 +99,8 @@ struct NewAccountView: View {
     @MainActor private func setErrorMessage(visible: Bool) {
         showErrorMessage = visible
     }
+}
+
+#Preview {
+    NewAccountView(authService: AuthService())
 }

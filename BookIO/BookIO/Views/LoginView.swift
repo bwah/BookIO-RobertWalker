@@ -21,10 +21,7 @@ struct LoginView: View {
     var body: some View {
         VStack {
             if authService.loading {
-                ProgressView()
-                    .padding()
-
-                Text("Logging in...")
+                LoadingView(text: "Logging in...")
             } else {
                 loginFieldsView
                 Spacer()
@@ -35,11 +32,14 @@ struct LoginView: View {
 
     private var loginFieldsView: some View {
         VStack {
+
+            AppTitleView()
+
             Text("Login with your Username and Password")
                 .font(.title3)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
-                .padding(EdgeInsets(top: 100, leading: 20, bottom: 20, trailing: 20))
+                .padding()
 
             BorderedTextField(text: $username, placeholder: "Username")
                 .disabled(authService.loading)
@@ -48,31 +48,39 @@ struct LoginView: View {
             BorderedTextField(text: $password, placeholder: "Password", secure: true)
                 .disabled(authService.loading)
 
-            BorderedButton(title: "Login to Your Account") {
+            BorderedButton(title: "Login to Your Account", color: loginEnabled() ? .black : .gray) {
                 attemptLoginWith(username: username, password: password)
             }
-            .disabled(authService.loading)
+            .disabled(!loginEnabled())
             .frame(maxWidth: .infinity)
             .padding()
 
-            Button("Create New Account") {
+            Text("or")
+
+            Button {
                 showingNewAccountSheet = true
+            } label: {
+                Text("Create New Account")
+                    .underline()
+                    .padding()
             }
 
             if showErrorMessage {
                 ErrorText(text: "Unable to login, please try again")
             }
+
+            Spacer()
         }
         .sheet(isPresented: $showingNewAccountSheet) {
             NewAccountView(authService: authService)
         }
     }
 
-    private func attemptLoginWith(username: String, password: String) {
-        guard username.isEmpty == false && password.isEmpty == false else {
-            return
-        }
+    private func loginEnabled() -> Bool {
+        return !username.isEmpty && !password.isEmpty && !authService.loading
+    }
 
+    private func attemptLoginWith(username: String, password: String) {
         Task {
             setErrorMessage(visible: false)
             let authResult = await authService.loginWith(Credentials(username: username, password: password))
@@ -83,4 +91,8 @@ struct LoginView: View {
     @MainActor private func setErrorMessage(visible: Bool) {
         showErrorMessage = visible
     }
+}
+
+#Preview {
+    LoginView(authService: AuthService())
 }

@@ -19,9 +19,9 @@ struct BooksMainView: View {
         VStack {
             switch viewModel.state {
             case .error:
-                Text("Something went wrong, please try again...")
+                ErrorText(text: "Something went wrong, please try again...")
             case .loading:
-                ProgressView()
+                LoadingView(text: "Loading book list...")
             case .loaded(let books):
                 listView(books: books)
             }
@@ -47,4 +47,8 @@ struct BooksMainView: View {
             viewModel.refresh()
         }
     }
+}
+
+#Preview {
+    BooksMainView(viewModel: PreviewBooksMainViewModel())
 }

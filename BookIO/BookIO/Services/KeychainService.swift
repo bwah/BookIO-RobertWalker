@@ -8,6 +8,25 @@
 import Foundation
 import AuthenticationServices
 
+class KeychainCredentialsHelper {
+    func retrieveFromKeychain() -> Credentials? {
+        guard let data = KeychainAccessor.read() else {
+            return nil
+        }
+        return try? JSONDecoder().decode(Credentials.self, from: data)
+    }
+
+    func saveCredentials(_ creds: Credentials) {
+        if let data = try? creds.asData() {
+            KeychainAccessor.save(data: data)
+        }
+    }
+
+    func removeCredentials() {
+        KeychainAccessor.delete()
+    }
+}
+
 class KeychainAccessor {
     private static let service = "com.bookio.service"
     private static let account = "com.bookio.account"
@@ -30,10 +49,6 @@ class KeychainAccessor {
         ] as CFDictionary
 
         let saveStatus = SecItemAdd(query, nil)
-
-//        if saveStatus != errSecSuccess {
-//            print("Error: \(saveStatus)")
-//        }
 
         if saveStatus == errSecDuplicateItem {
             update(data: data)

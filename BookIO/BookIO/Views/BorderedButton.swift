@@ -10,10 +10,12 @@ import SwiftUI
 struct BorderedButton: View {
     private let title: String
     private let action: () -> Void
+    private let color: Color
 
-    init(title: String, action: @escaping () -> Void) {
+    init(title: String, color: Color = .black, action: @escaping () -> Void) {
         self.title = title
         self.action = action
+        self.color = color
     }
 
     var body: some View {
@@ -21,12 +23,18 @@ struct BorderedButton: View {
             Text(title)
                 .fontWeight(.bold)
                 .font(.system(size: 18))
-                .foregroundColor(.black)
+                .tint(color)
                 .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.black, lineWidth: 3)
+                        .stroke(color, lineWidth: 3)
                 )
         }
+    }
+}
+
+#Preview {
+    BorderedButton(title: "Test Button", color: .black) {
+
     }
 }

@@ -23,7 +23,7 @@ class BooksMainViewModel: ObservableObject {
         self.bookService = bookService
     }
     
-    @MainActor func updateState(_ state: BooksMainViewModelState) {
+    @MainActor private func updateState(_ state: BooksMainViewModelState) {
         self.state = state
     }
 

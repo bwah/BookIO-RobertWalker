@@ -49,3 +49,9 @@ struct BookDetailView: View {
         .padding(EdgeInsets(top: 0, leading: 30, bottom: 50, trailing: 30))
     }
 }
+
+#Preview {
+    BookDetailView(book: previewBooks()[0]) { book in
+        print("title: \(book.title)")
+    }
+}

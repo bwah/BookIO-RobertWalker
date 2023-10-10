@@ -13,24 +13,7 @@ struct Credentials: Codable {
 }
 
 extension Credentials {
-    static func retrieveFromKeychain() throws -> Credentials? {
-        guard let data = KeychainAccessor.read() else {
-            return nil
-        }
-        print("got creds")
-        return try JSONDecoder().decode(Credentials.self, from: data)
-    }
-
-    static func removeFromKeychain() {
-        KeychainAccessor.delete()
-    }
-
-    func saveToKeychain() throws {
-        let data = try self.asData()
-        KeychainAccessor.save(data: data)
-    }
-
-    private func asData() throws -> Data {
+    func asData() throws -> Data {
         return try JSONEncoder().encode(self)
     }
 }
