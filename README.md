@@ -14,15 +14,19 @@ This project was built with Xcode 15 and has a minimum deployment target of iOS 
 
 3. Start local server
 
-Install nodejs if needed, open BookIO-Server and npm run dev
+Install nodejs if needed, open BookIO-Server and "npm install" then "npm run dev"
 
-cd BookIO-Server; npm run dev
+cd BookIO-Server; npm install; npm run dev
 
 4. Open xcodeproj in Xcode
 
 found at BookIO-iOS/BookIO.xcodeproj
 
 5. Select an iPhone simulator with iOS 16/17 and choose Product->Run (or tap play button)
+
+### Note
+
+This project was built with xCode 15 and uses the #Preview macro for swiftui previews. It should be able to be compiled and ran in xCode 14 against an iOS 16 simulator but the #Preview macros will need to be commented out
 
 ---
 
